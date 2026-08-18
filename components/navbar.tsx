@@ -10,7 +10,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { cart, wishlist, compare } = useStore();
   return <>
-    <div className="bg-[#77e5ad] py-2 text-center text-xs font-bold text-black">STUDENT DEALS • SETUP BUNDLES • FREE BACOLOD CITY SHIPPING OVER ₱3,000</div>
+    <div className="bg-[#77e5ad] py-2 text-center text-xs font-bold text-black">STUDENT DEALS • SETUP BUNDLES • FREE BACOLOD CITY STANDARD SHIPPING (3–5 DAYS)</div>
     <header className="sticky top-0 z-40 border-b border-[#202633] bg-[#080b10]/90 backdrop-blur-xl">
       <div className="container flex h-[76px] items-center justify-between">
         <Link href="/" className="flex items-center gap-3 tracking-tight"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#77e5ad] text-black"><Gamepad2 size={20} /></span><span><b className="block text-xl leading-none">KRS<span className="text-[#77e5ad]">Tech</span></b><small className="muted mt-1 block text-[9px] font-medium tracking-[.12em]">UPGRADE YOUR EXPERIENCE.</small></span></Link>

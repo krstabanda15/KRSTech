@@ -24,7 +24,7 @@ export function AudiencePromos() {
     </section>
     <section className="section">
       <div className="container">
-        <div className="section-head"><div><p className="eyebrow">Spend smarter</p><h2>More setup for your budget.</h2></div><div className="hidden items-center gap-2 text-sm text-[#77e5ad] sm:flex"><Truck size={18} /> Free shipping over ₱3,000</div></div>
+        <div className="section-head"><div><p className="eyebrow">Spend smarter</p><h2>More setup for your budget.</h2></div><div className="hidden items-center gap-2 text-sm text-[#77e5ad] sm:flex"><Truck size={18} /> Free standard shipping (3–5 days)</div></div>
         <div className="grid gap-4 lg:grid-cols-3">{offers.map(({ icon: Icon, tag, title, copy, action, href }) => <article className="panel group p-6 hover:-translate-y-1 hover:border-[#405044]" key={title}><div className="flex items-center justify-between"><span className="eyebrow">{tag}</span><Icon className="text-[#77e5ad]" size={22} /></div><h3 className="mt-5 text-2xl font-black">{title}</h3><p className="muted mt-3 min-h-12 text-sm leading-6">{copy}</p><Link href={href} className="mt-6 flex items-center gap-2 text-sm font-bold text-[#77e5ad]">{action}<ArrowRight className="transition-transform group-hover:translate-x-1" size={16} /></Link></article>)}</div>
       </div>
     </section>

@@ -1,0 +1,18 @@
+"use client";
+import {useEffect,useState} from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {ArrowLeft,ArrowRight} from "lucide-react";
+import {Product} from "@/types";
+import {peso} from "@/lib/helpers";
+
+export function HeroCarousel({items}:{items:Product[]}){
+  const[active,setActive]=useState(0),[paused,setPaused]=useState(false);const product=items[active];const groupStart=Math.floor(active/3)*3;const group=items.slice(groupStart,groupStart+3);
+  useEffect(()=>{if(paused||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;const timer=window.setInterval(()=>setActive(i=>(i+1)%items.length),7000);return()=>window.clearInterval(timer)},[items.length,paused]);
+  const select=(index:number)=>{setActive((index+items.length)%items.length);setPaused(true)};
+  return <section className="relative overflow-hidden border-b border-[#202633]" onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)} onFocus={()=>setPaused(true)} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget))setPaused(false)}} aria-roledescription="carousel" aria-label="Featured products">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,#193b2c_0,transparent_38%)]"/><div className="container relative grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-2">
+      <div><div className="eyebrow mb-5">Raise your game</div><h1 className="max-w-2xl text-5xl font-black leading-[.96] tracking-[-.05em] sm:text-7xl">PRECISION IN<br/><span className="text-[#77e5ad]">EVERY MOVE.</span></h1><p className="muted mt-7 max-w-lg text-lg leading-8">Affordable, stylish tech for students, gamers, young professionals, and PC enthusiasts—built to upgrade every workday and play session.</p><div className="mt-8 flex flex-wrap gap-3"><Link className="btn primary" href={`/product/${product.id}`}>Shop {product.name}<ArrowRight size={18}/></Link><Link className="btn secondary" href="/shop">Explore products</Link></div><div className="mt-12 flex gap-8"><div><b className="text-2xl">20+</b><p className="muted text-xs">Curated products</p></div><div><b className="text-2xl">4.8/5</b><p className="muted text-xs">Player rating</p></div><div><b className="text-2xl">2 yr</b><p className="muted text-xs">Warranty</p></div></div></div>
+      <div className="relative mx-auto aspect-square w-full max-w-[570px]"><div className="absolute inset-[12%] rounded-full border border-[#77e5ad]/20"/><div className="hero-product" key={product.id}><Image fill priority={active===0} sizes="(max-width:1024px) 100vw,570px" className="object-contain drop-shadow-[0_30px_45px_rgba(0,0,0,.65)]" src={product.image} alt={product.name}/></div><div className="panel absolute bottom-4 left-0 z-10 p-4 shadow-2xl"><span className="eyebrow">Featured drop</span><h3 className="mt-1 font-bold">{product.name}</h3><p className="text-[#77e5ad]">{peso(product.price)}</p></div><div className="hero-nav absolute bottom-4 right-0 z-10 flex items-center gap-2"><button onClick={()=>select(active-1)} className="carousel-button" aria-label="Previous featured product"><ArrowLeft size={18}/></button><div className="flex gap-2">{group.map((item,index)=>{const itemIndex=groupStart+index;return <button key={item.id} onClick={()=>select(itemIndex)} className={`hero-dot ${itemIndex===active?"is-active":""}`} aria-label={`Show ${item.name}`} aria-current={itemIndex===active?"true":undefined}/>})}</div><button onClick={()=>select(active+1)} className="carousel-button" aria-label="Next featured product"><ArrowRight size={18}/></button></div></div>
+    </div></section>
+}
