@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Gamepad2, Globe, MessageCircle, Share2 } from "lucide-react";
+import { Gamepad2, Globe, MessageCircle } from "lucide-react";
+import { ShareSite } from "./share-site";
 
 const groups = [
-  ["Shop", "All Products", "New Arrivals", "Deals"],
-  ["Support", "Shipping", "Returns", "Track Order"],
-  ["Company", "About Us", "Contact", "Privacy"],
+  ["Shop", ["All Products", "/shop"], ["New Arrivals", "/#new"], ["Deals", "/#deals"]],
+  ["Support", ["Contact Support", "/contact"], ["Returns", "/contact?topic=return"], ["Track Order", "/orders"]],
+  ["Company", ["About Us", "/about"], ["Contact", "/contact"], ["Privacy", "/privacy"]],
 ];
 
 export function Footer() {
@@ -15,11 +16,11 @@ export function Footer() {
         <div className="mb-2 flex items-center gap-2 text-lg font-black"><Gamepad2 className="text-[#77e5ad]" />KRS<span className="text-[#77e5ad]">Tech</span></div>
         <p className="mb-4 text-xs font-bold tracking-[.12em] text-[#77e5ad]">UPGRADE YOUR EXPERIENCE.</p>
         <p className="muted text-sm leading-6">Premium gaming gear built for the way you play. Curated in the Philippines.</p>
-        <div className="mt-5 flex gap-3"><Globe size={18} /><MessageCircle size={18} /><Share2 size={18} /></div>
+        <div className="mt-5 flex items-center gap-1"><Link href="/about" aria-label="About KRSTech" title="About KRSTech" className="rounded-lg p-2 hover:bg-white/10 hover:text-[#77e5ad]"><Globe size={18} /></Link><Link href="mailto:support@krstech.ph" aria-label="Email KRSTech support" title="Email support" className="rounded-lg p-2 hover:bg-white/10 hover:text-[#77e5ad]"><MessageCircle size={18} /></Link><ShareSite /></div>
       </div>
-      {groups.map(group => <div key={group[0]}>
+      {groups.map(group => <div key={group[0] as string}>
         <h4 className="mb-4 font-bold">{group[0]}</h4>
-        {group.slice(1).map(item => <Link key={item} href={item === "Track Order" ? "/orders" : "/shop"} className="muted mb-3 block text-sm hover:text-white">{item}</Link>)}
+        {group.slice(1).map(item => { const [label, href] = item as string[]; return <Link key={label} href={href} className="muted mb-3 block text-sm hover:text-white">{label}</Link>})}
       </div>)}
     </div>
     <div className="border-t border-[#202633] py-6">

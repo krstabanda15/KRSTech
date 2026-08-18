@@ -4,7 +4,7 @@ import { Menu, Search, Heart, ShoppingBag, User, Gamepad2, X, GitCompareArrows }
 import { useState } from "react";
 import { useStore } from "./store";
 
-const links = [["Home", "/"], ["Shop", "/shop"], ["Categories", "/#categories"], ["New Arrivals", "/#new"], ["Deals", "/#deals"]];
+const links = [["Home", "/"], ["Shop", "/shop"], ["Categories", "/#categories"], ["New Arrivals", "/#new"], ["Deals", "/#deals"], ["Support", "/contact"]];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
