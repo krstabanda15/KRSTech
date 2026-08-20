@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GitCompareArrows, X, Plus, Check, Search } from "lucide-react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useStore } from "@/components/store";
 import { products, categories } from "@/data/products";
 import { peso } from "@/lib/helpers";
@@ -14,6 +14,9 @@ export default function Compare() {
   const [category, setCategory] = useState("All categories");
   const list = products.filter(product => compare.includes(product.id));
   const available = products.filter(product => !compare.includes(product.id) && (category === "All categories" || product.category === category) && `${product.name} ${product.brand}`.toLowerCase().includes(query.toLowerCase()));
+  const needsHorizontalScroll = list.length === 3;
+  const comparisonMinWidth = needsHorizontalScroll ? 646 : undefined;
+  const productColumns = needsHorizontalScroll ? "minmax(160px,1fr)" : "minmax(0,1fr)";
 
   const addProduct = (id: string) => {
     toggleCompare(id);
@@ -39,11 +42,14 @@ export default function Compare() {
       </div>
     </section>}
 
-    {!list.length ? <div className="panel mt-8 py-20 text-center"><GitCompareArrows className="mx-auto text-gray-600" size={48} /><h2 className="mt-5 text-xl font-bold">Your comparison is empty</h2><p className="muted mt-2">Use the Add product button above or browse the full collection.</p><Link href="/shop" className="btn secondary mt-6">Browse shop</Link></div> : <div className="mt-8 overflow-auto">
-      <div className="grid min-w-[700px] gap-3" style={{ gridTemplateColumns: `150px repeat(${list.length},minmax(220px,1fr))` }}>
+    {!list.length ? <div className="panel mt-8 py-20 text-center"><GitCompareArrows className="mx-auto text-gray-600" size={48} /><h2 className="mt-5 text-xl font-bold">Your comparison is empty</h2><p className="muted mt-2">Use the Add product button above or browse the full collection.</p><Link href="/shop" className="btn secondary mt-6">Browse shop</Link></div> : <div className="mt-8">
+      {needsHorizontalScroll && <p className="muted mb-3 text-xs sm:hidden">Swipe sideways to see all three products.</p>}
+      <div className="max-w-full overflow-x-auto overscroll-x-contain pb-2">
+      <div className="grid w-full gap-3" style={{ gridTemplateColumns: `minmax(105px,130px) repeat(${list.length},${productColumns})`, minWidth: comparisonMinWidth }}>
         <div />
-        {list.map(product => <div className="panel relative p-4" key={product.id}><button aria-label={`Remove ${product.name} from comparison`} onClick={() => toggleCompare(product.id)} className="absolute right-3 top-3 z-10 rounded-full bg-black/70 p-1 hover:bg-red-500"><X size={16} /></button><div className="relative aspect-[4/3] overflow-hidden rounded-xl"><Image fill className="object-cover" src={product.image} alt={product.name} /></div><p className="eyebrow mt-4">{product.brand}</p><b>{product.name}</b><button onClick={() => addCart(product.id)} className="btn primary mt-4 w-full">Add to cart</button></div>)}
-        {[["Price", (product: any) => peso(product.price)], ["Rating", (product: any) => `${product.rating.toFixed(1)} / 5`], ["Connection", (product: any) => product.connection], ["Warranty", (product: any) => product.specifications.Warranty], ["Availability", (product: any) => product.stock ? "In stock" : "Unavailable"], ["Compatibility", (product: any) => product.specifications.Compatibility]].flatMap(([label, value]: any) => <><b className="panel p-4" key={label}>{label}</b>{list.map(product => <div className="panel flex items-center gap-2 p-4" key={label + product.id}>{label === "Availability" && product.stock > 0 && <Check className="text-[#77e5ad]" size={15} />}{value(product)}</div>)}</>)}
+        {list.map(product => <div className="panel relative p-3 sm:p-4" key={product.id}><button aria-label={`Remove ${product.name} from comparison`} onClick={() => toggleCompare(product.id)} className="absolute right-2 top-2 z-10 rounded-full bg-black/70 p-1 sm:right-3 sm:top-3 hover:bg-red-500"><X size={16} /></button><div className="relative aspect-[4/3] overflow-hidden rounded-xl"><Image fill sizes="(max-width: 640px) 55vw, 280px" className="object-cover" src={product.image} alt={product.name} /></div><p className="eyebrow mt-4">{product.brand}</p><b className="block break-words">{product.name}</b><button onClick={() => addCart(product.id)} className="btn primary mt-4 w-full text-sm">Add to cart</button></div>)}
+        {[["Price", (product: any) => peso(product.price)], ["Rating", (product: any) => `${product.rating.toFixed(1)} / 5`], ["Connection", (product: any) => product.connection], ["Warranty", (product: any) => product.specifications.Warranty], ["Availability", (product: any) => product.stock ? "In stock" : "Unavailable"], ["Compatibility", (product: any) => product.specifications.Compatibility]].map(([label, value]: any) => <Fragment key={label}><b className="panel break-words p-3 text-sm leading-tight sm:p-4 sm:text-base">{label}</b>{list.map(product => <div className="panel flex items-center gap-2 break-words p-3 text-sm sm:p-4 sm:text-base" key={label + product.id}>{label === "Availability" && product.stock > 0 && <Check className="shrink-0 text-[#77e5ad]" size={15} />}{value(product)}</div>)}</Fragment>)}
+      </div>
       </div>
     </div>}
   </div>;

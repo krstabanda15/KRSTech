@@ -8,6 +8,7 @@
 .carousel-controls{position:static;justify-content:flex-end;margin:-8px 0 12px}
 .hero-product{position:absolute;inset:0;animation:hero-product-in .55s cubic-bezier(.2,.7,.2,1) both}.hero-dot{height:8px;width:8px;border:0;border-radius:999px;background:#647080;padding:0}.hero-dot.is-active{width:24px;background:var(--accent)}@keyframes hero-product-in{from{opacity:0;transform:translateX(20px) scale(.98)}to{opacity:1;transform:none}}
 @media(max-width:560px){.hero-nav{bottom:-38px!important}.hero-nav .carousel-button{height:36px;width:36px}}
+.mobile-drawer{animation:drawer-enter .22s cubic-bezier(.2,.7,.2,1) both}@keyframes drawer-enter{from{opacity:.7;transform:translateX(100%)}to{opacity:1;transform:none}}
 :root{--bg:#080b10;--panel:#10141c;--muted:#929baa;--line:#202633;--accent:#77e5ad;--text:#f5f7fa}
 /* Responsive layout safeguards */
 html,body{max-width:100%;overflow-x:hidden}img{max-width:100%}.panel,.field{min-width:0}.section-head{gap:20px!important}.grid-products{grid-template-columns:repeat(4,minmax(0,1fr))!important}
