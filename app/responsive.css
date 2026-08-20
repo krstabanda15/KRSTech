@@ -1,0 +1,70 @@
+/* Loaded after globals.css so responsive rules consistently win. */
+html,body{max-width:100%;overflow-x:clip}
+body{min-width:320px}
+main{min-width:0}
+img,svg{max-width:100%}
+.panel,.field,.container>*{min-width:0}
+.btn{max-width:100%;white-space:normal;text-align:center}
+.field{max-width:100%}
+.muted{overflow-wrap:anywhere}
+.grid-products{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+@media (max-width:1023px){
+  .grid-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .section{padding-block:52px}
+  h1{overflow-wrap:anywhere}
+}
+
+@media (max-width:767px){
+  .container{width:calc(100% - 32px)}
+  main>section:first-child>.container{min-height:auto!important;gap:24px!important;padding-block:48px 58px!important}
+  main>section:first-child>.container>div:first-child{text-align:center}
+  main>section:first-child h1{font-size:clamp(40px,12vw,60px);line-height:.98}
+  main>section:first-child>.container>div:first-child>p{margin-inline:auto;font-size:16px;line-height:1.65}
+  main>section:first-child>.container>div:first-child>div{justify-content:center}
+  main>section:first-child>.container>div:last-child{max-width:430px}
+  .section-head{align-items:flex-start;gap:12px}
+  .section-head h2{font-size:32px;line-height:1.1}
+  .product-carousel{grid-auto-columns:min(78vw,340px)}
+  .panel{border-radius:18px}
+  table{max-width:100%}
+}
+
+@media (max-width:560px){
+  .container{width:calc(100% - 24px)}
+  .section{padding-block:40px}
+  .grid-products{grid-template-columns:1fr}
+  .section-head{margin-bottom:20px}
+  .section-head h2{font-size:28px}
+  main>div.border-b .container{grid-template-columns:1fr 1fr;gap:14px}
+  main>div.border-b .container>div{min-width:0}
+  main>div.border-b .container svg{flex:none}
+  .grid-products article>div:last-child>div:last-child{flex-wrap:wrap;gap:12px}
+  main>section:last-child form{flex-direction:column}
+  main>section:last-child form .btn{width:100%}
+  .section-head>a{flex:none}
+  .section-head>div h2{overflow-wrap:anywhere}
+  input,select,textarea{font-size:16px!important}
+  footer .container.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  footer .container.grid>div:first-child{grid-column:1/-1}
+  footer h4{margin-bottom:12px}
+  footer a.muted{margin-bottom:10px}
+  footer .border-t.py-6{padding-block:20px}
+  main>.container{padding-top:36px;padding-bottom:36px}
+  main>.container>h1{font-size:clamp(32px,10vw,40px);line-height:1.08}
+}
+
+@media (max-width:420px){
+  main>section:first-child h1{font-size:38px}
+  main>section:first-child>.container>div:first-child>div:nth-last-child(2){display:grid}
+  main>section:first-child>.container>div:first-child>div:nth-last-child(2) .btn{width:100%}
+  main>section:first-child>.container>div:first-child>div:last-child{gap:20px}
+  main>section:first-child>.container>div:last-child>.panel{bottom:2px!important;max-width:58%;padding:10px!important}
+  main>section:first-child>.container>div:last-child>.panel h3{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+}
+
+@media (max-width:380px){
+  main>div.border-b .container{grid-template-columns:1fr}
+  .section-head{flex-direction:column}
+  .section-head>a{align-self:flex-start}
+}

@@ -10,27 +10,27 @@ const groups = [
 ];
 
 export function Footer() {
-  return <footer className="border-t border-[#202633] bg-[#090c11] pt-16">
-    <div className="container grid gap-10 pb-12 md:grid-cols-4">
-      <div>
+  return <footer className="border-t border-[#202633] bg-[#090c11] pt-10 sm:pt-14">
+    <div className="container grid grid-cols-2 gap-x-6 gap-y-9 pb-10 sm:grid-cols-4 sm:pb-12">
+      <div className="col-span-2 sm:col-span-4 lg:col-span-1">
         <div className="mb-2 flex items-center gap-2 text-lg font-black"><Gamepad2 className="text-[#77e5ad]" />KRS<span className="text-[#77e5ad]">Tech</span></div>
         <p className="mb-4 text-xs font-bold tracking-[.12em] text-[#77e5ad]">UPGRADE YOUR EXPERIENCE.</p>
         <p className="muted text-sm leading-6">Premium gaming gear built for the way you play. Curated in the Philippines.</p>
         <div className="mt-5 flex items-center gap-1"><Link href="/about" aria-label="About KRSTech" title="About KRSTech" className="rounded-lg p-2 hover:bg-white/10 hover:text-[#77e5ad]"><Globe size={18} /></Link><Link href="mailto:support@krstech.ph" aria-label="Email KRSTech support" title="Email support" className="rounded-lg p-2 hover:bg-white/10 hover:text-[#77e5ad]"><MessageCircle size={18} /></Link><ShareSite /></div>
       </div>
-      {groups.map(group => <div key={group[0] as string}>
+      {groups.map(group => <div className="min-w-0 lg:col-span-1" key={group[0] as string}>
         <h4 className="mb-4 font-bold">{group[0]}</h4>
         {group.slice(1).map(item => { const [label, href] = item as string[]; return <Link key={label} href={href} className="muted mb-3 block text-sm hover:text-white">{label}</Link>})}
       </div>)}
     </div>
     <div className="border-t border-[#202633] py-6">
-      <div className="container flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+      <div className="container flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
         <span className="text-xs text-gray-500">© 2026 KRSTech. All rights reserved.</span>
-        <Link href="https://kimreubentabanda.vercel.app" target="_blank" rel="noreferrer" aria-label="Visit Kim Reuben S. Tabanda's portfolio" className="group flex items-center gap-3 rounded-xl p-2 -m-2 hover:bg-white/5">
+        <Link href="https://kimreubentabanda.vercel.app" target="_blank" rel="noreferrer" aria-label="Visit Kim Reuben S. Tabanda's portfolio" className="group flex max-w-full items-center gap-3 rounded-xl p-2 -m-2 hover:bg-white/5">
           <div className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-[#77e5ad]/60 bg-white">
             <Image src="/images/krst.png" alt="Kim Reuben S. Tabanda" fill sizes="44px" className="object-cover object-top transition-transform group-hover:scale-105" />
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="block text-[10px] uppercase tracking-[.14em] text-gray-500">Designed and developed by</span>
             <b className="text-sm text-gray-200 group-hover:text-[#77e5ad]">Kim Reuben S. Tabanda ↗</b>
           </div>
