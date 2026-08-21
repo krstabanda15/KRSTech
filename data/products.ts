@@ -10,14 +10,14 @@ Mousepads:["photo-1625842268584-8f3296236761","photo-1527443224154-c4a3942d3acf"
 "PC Accessories":["photo-1625842268584-8f3296236761","photo-1587829741301-dc798b83add3","photo-1527443224154-c4a3942d3acf"]
 };
 const seed:[string,string,string,number,string][]=[
-["Apex Pro TKL","KRSTech","Keyboards",7499,"Wireless"],["K75 Nova","Corsair","Keyboards",5499,"Wired"],["BlackWidow V4","Razer","Keyboards",8999,"Wired"],
+["Apex Pro TKL","KADA Tech","Keyboards",7499,"Wireless"],["K75 Nova","Corsair","Keyboards",5499,"Wired"],["BlackWidow V4","Razer","Keyboards",8999,"Wired"],
 ["Viper V3 Pro","Razer","Gaming Mice",8499,"Wireless"],["G Pro X Superlight","Logitech","Gaming Mice",7499,"Wireless"],["Pulsefire Haste","HyperX","Gaming Mice",2999,"Wireless"],
 ["Cloud III Wireless","HyperX","Headsets",7999,"Wireless"],["Arctis Nova 7","SteelSeries","Headsets",9499,"Wireless"],["BlackShark V2","Razer","Headsets",4499,"Wired"],
 ["DualSense Midnight","Sony","Controllers",4299,"Wireless"],["Xbox Carbon Controller","Microsoft","Controllers",3499,"Wireless"],
 ["Odyssey G5 27-inch","Samsung","Monitors",14999,"DisplayPort"],["UltraGear 24GN60R","LG","Monitors",8999,"DisplayPort"],["TUF VG27AQ3A","ASUS","Monitors",16999,"DisplayPort"],
-["Titan Evo Stealth","Secretlab","Gaming Chairs",24999,"N/A"],["Drift Core Chair","KRSTech","Gaming Chairs",9999,"N/A"],
+["Titan Evo Stealth","Secretlab","Gaming Chairs",24999,"N/A"],["Drift Core Chair","KADA Tech","Gaming Chairs",9999,"N/A"],
 ["QcK Heavy XL","SteelSeries","Mousepads",1999,"N/A"],["Strider Hybrid XL","Razer","Mousepads",2499,"N/A"],
-["Stream Deck MK.2","Elgato","PC Accessories",8499,"USB"],["C920 HD Pro","Logitech","PC Accessories",4999,"USB"],["QuadCast S","HyperX","PC Accessories",7499,"USB"],["Laptop Stand Pro","KRSTech","PC Accessories",1499,"N/A"]];
+["Stream Deck MK.2","Elgato","PC Accessories",8499,"USB"],["C920 HD Pro","Logitech","PC Accessories",4999,"USB"],["QuadCast S","HyperX","PC Accessories",7499,"USB"],["Laptop Stand Pro","KADA Tech","PC Accessories",1499,"N/A"]];
 const gearDetails:Record<string,{bestFor:string;buyerTip:string;highlights:string[];specs:Record<string,string>}[]>={
 Keyboards:[
 {bestFor:"Competitive players who want more mouse room",buyerTip:"Choose this compact TKL layout if you rarely use a number pad and value adjustable key response.",highlights:["TKL space-saving layout","Adjustable actuation","Per-key RGB lighting"],specs:{Layout:"Tenkeyless (TKL)","Switch feel":"Linear, adjustable","Key rollover":"Full N-key rollover","Media controls":"Dedicated wheel"}},

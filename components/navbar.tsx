@@ -34,7 +34,7 @@ export function Navbar() {
     <div className="bg-[#77e5ad] px-3 py-2 text-center text-xs font-bold text-black">STUDENT DEALS • SETUP BUNDLES • FREE PHILIPPINES STANDARD SHIPPING (3–5 DAYS) • SAME-DAY SHIPPING WITHIN BACOLOD CITY</div>
     <header ref={headerRef} className="sticky top-0 z-40 border-b border-[#202633] bg-[#080b10]/90 backdrop-blur-xl">
       <div className="container flex h-[68px] items-center justify-between gap-2 sm:h-[76px]">
-        <Link href="/" className="flex items-center gap-3 tracking-tight"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#77e5ad] text-black"><Gamepad2 size={20} /></span><span><b className="block text-xl leading-none">KRS<span className="text-[#77e5ad]">Tech</span></b><small className="muted mt-1 block text-[9px] font-medium tracking-[.12em]">UPGRADE YOUR EXPERIENCE.</small></span></Link>
+        <Link href="/" className="flex items-center gap-3 tracking-tight"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#77e5ad] text-black"><Gamepad2 size={20} /></span><span><b className="block text-xl leading-none">KADA <span className="text-[#77e5ad]">Tech</span></b><small className="muted mt-1 block text-[9px] font-medium tracking-[.12em]">TECH FOR EVERY SETUP.</small></span></Link>
         <nav className="hidden gap-7 lg:flex">{links.map(x => <Link className="text-sm text-gray-300 hover:text-white" key={x[0]} href={x[1]}>{x[0]}</Link>)}</nav>
         <div className="flex items-center gap-1">
           <Link aria-label="Search products" className="hidden rounded-lg p-2 hover:bg-white/10 sm:block" href="/shop"><Search size={20} /></Link>

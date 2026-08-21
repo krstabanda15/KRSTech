@@ -37,7 +37,7 @@ export default function ContactPage() {
         const subject = encodeURIComponent(`[${topic}] ${String(values.get("order") || "Customer request")}`);
         const body = encodeURIComponent(`Name: ${values.get("name")}\nEmail: ${values.get("email")}\nPhone: ${values.get("phone") || "Not provided"}\nOrder: ${values.get("order") || "Not applicable"}\n\n${values.get("message")}`);
         setSent(true);
-        window.location.href = `mailto:support@krstech.ph?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:support@kadatech.ph?subject=${subject}&body=${body}`;
       }}>
         <fieldset>
           <legend className="mb-3 font-bold">What do you need help with?</legend>
@@ -60,7 +60,7 @@ export default function ContactPage() {
 
       <aside className="space-y-4">
         <SupportCard icon={Clock3} title="Response time" detail="Usually within one business day" />
-        <SupportCard icon={Mail} title="Email us" detail="support@krstech.ph" />
+        <SupportCard icon={Mail} title="Email us" detail="support@kadatech.ph" />
         <SupportCard icon={MessageCircle} title="Need quick help?" detail="Monday–Saturday, 9 AM–6 PM" />
         <div className="panel p-6"><PackageCheck className="text-[#77e5ad]" /><h2 className="mt-4 font-bold">Track an existing order</h2><p className="muted mt-2 text-sm">See your latest delivery status and courier details.</p><Link href="/orders" className="btn secondary mt-5 w-full">Track order</Link></div>
       </aside>

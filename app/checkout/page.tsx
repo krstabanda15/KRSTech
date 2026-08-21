@@ -27,7 +27,7 @@ export default function Checkout() {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem("krstech-checkout-profile") || "null") as SavedProfile | null;
+      const saved = JSON.parse(localStorage.getItem("kada-tech-checkout-profile") || "null") as SavedProfile | null;
       if (!saved) return;
       setContact(saved.contact);
       setAddresses(saved.addresses);
@@ -56,7 +56,7 @@ export default function Checkout() {
     setErrors(next); return !Object.keys(next).length;
   };
 
-  const saveProfile = (nextAddresses = addresses) => localStorage.setItem("krstech-checkout-profile", JSON.stringify({ contact, addresses: nextAddresses }));
+  const saveProfile = (nextAddresses = addresses) => localStorage.setItem("kada-tech-checkout-profile", JSON.stringify({ contact, addresses: nextAddresses }));
 
   const continueCheckout = () => {
     if (step === 0) { if (!validateContact()) return; saveProfile(); }

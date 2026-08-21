@@ -13,7 +13,7 @@ const defaultProfile: Profile = { firstName: "Kim Reuben", lastName: "Tabanda", 
 export default function Account() {
   const [tab, setTab] = useState("Profile");
   return <div className="container py-12">
-    <p className="eyebrow">My KRSTech</p><h1 className="mt-2 text-4xl font-black">Welcome back, Kim.</h1>
+    <p className="eyebrow">My KADA Tech</p><h1 className="mt-2 text-4xl font-black">Welcome back, Kim.</h1>
     <div className="mt-8 grid gap-6 lg:grid-cols-[250px_1fr]">
       <aside className="panel h-fit p-3">{nav.map(([label, Icon]) => <button onClick={() => setTab(label)} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm ${tab === label ? "bg-[#77e5ad] font-bold text-black" : "text-gray-400 hover:bg-white/5 hover:text-white"}`} key={label}><Icon size={18}/>{label}</button>)}</aside>
       <section className="panel p-6 sm:p-8">
@@ -37,7 +37,7 @@ function ProfileForm() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("krstech-profile");
+      const stored = localStorage.getItem("kada-tech-profile");
       if (stored) {
         const next = { ...defaultProfile, ...JSON.parse(stored) };
         setProfile(next);
@@ -56,7 +56,7 @@ function ProfileForm() {
     const next = Object.fromEntries(Object.entries(draft).map(([key, value]) => [key, value.trim()])) as Profile;
     setProfile(next);
     setDraft(next);
-    localStorage.setItem("krstech-profile", JSON.stringify(next));
+    localStorage.setItem("kada-tech-profile", JSON.stringify(next));
     setEditing(false);
     setSaved(true);
   };
@@ -82,7 +82,7 @@ function AddressCard() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("krstech-profile-address");
+      const stored = localStorage.getItem("kada-tech-profile-address");
       if (stored) { const next = { ...defaultAddress, ...JSON.parse(stored) }; setAddress(next); setDraft(next); }
     } catch { /* Keep the default address if saved data is invalid. */ }
   }, []);
@@ -91,7 +91,7 @@ function AddressCard() {
   const saveAddress = (event: React.FormEvent) => {
     event.preventDefault();
     const next = Object.fromEntries(Object.entries(draft).map(([key, value]) => [key, value.trim()])) as Address;
-    setAddress(next); setDraft(next); localStorage.setItem("krstech-profile-address", JSON.stringify(next)); setEditing(false); setSaved(true);
+    setAddress(next); setDraft(next); localStorage.setItem("kada-tech-profile-address", JSON.stringify(next)); setEditing(false); setSaved(true);
   };
 
   return <div className="panel mt-6 max-w-2xl p-5 sm:p-6">
