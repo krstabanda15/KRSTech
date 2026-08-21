@@ -1,6 +1,7 @@
 /* Loaded after globals.css so responsive rules consistently win. */
 html,body{max-width:100%;overflow-x:clip}
 body{min-width:320px}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #77e5ad;outline-offset:3px}
 main{min-width:0}
 img,svg{max-width:100%}
 .panel,.field,.container>*{min-width:0}
@@ -16,6 +17,8 @@ img,svg{max-width:100%}
 }
 
 @media (max-width:767px){
+  body{padding-bottom:66px}
+  button,a{min-height:44px}
   .container{width:calc(100% - 32px)}
   main>section:first-child>.container{min-height:auto!important;gap:24px!important;padding-block:48px 58px!important}
   main>section:first-child>.container>div:first-child{text-align:center}

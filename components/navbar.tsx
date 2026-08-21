@@ -37,7 +37,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3 tracking-tight"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#77e5ad] text-black"><Gamepad2 size={20} /></span><span><b className="block text-xl leading-none">KADA <span className="text-[#77e5ad]">Tech</span></b><small className="muted mt-1 block text-[9px] font-medium tracking-[.12em]">TECH FOR EVERY SETUP.</small></span></Link>
         <nav className="hidden gap-7 lg:flex">{links.map(x => <Link className="text-sm text-gray-300 hover:text-white" key={x[0]} href={x[1]}>{x[0]}</Link>)}</nav>
         <div className="flex items-center gap-1">
-          <Link aria-label="Search products" className="hidden rounded-lg p-2 hover:bg-white/10 sm:block" href="/shop"><Search size={20} /></Link>
+          <button aria-label="Search products" onClick={() => window.dispatchEvent(new Event("kada-open-search"))} className="hidden rounded-lg p-2 hover:bg-white/10 sm:block"><Search size={20} /></button>
           <span className="hidden sm:block"><NavIcon href="/compare" label="Compare products" count={compare.length}><GitCompareArrows size={20} /></NavIcon></span>
           <NavIcon href="/wishlist" label="Wishlist" count={wishlist.length}><Heart size={20} /></NavIcon>
           <NavIcon href="/cart" label="Shopping cart" count={cart.reduce((a, b) => a + b.qty, 0)}><ShoppingBag size={20} /></NavIcon>
