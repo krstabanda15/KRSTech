@@ -1,2 +1,5 @@
-export type Product={id:string;name:string;brand:string;category:string;price:number;oldPrice?:number;rating:number;reviewCount:number;stock:number;description:string;image:string;connection:string;specifications:Record<string,string>;highlights:string[];bestFor:string;buyerTip:string;featured?:boolean;newArrival?:boolean;bestSeller?:boolean};
-export type CartLine={id:string;qty:number};
+export type Product={id:string;name:string;brand:string;category:string;price:number;oldPrice?:number;rating:number;reviewCount:number;stock:number;description:string;image:string;connection:string;specifications:Record<string,string>;highlights:string[];bestFor:string;buyerTip:string;featured?:boolean;newArrival?:boolean;bestSeller?:boolean;studentEligible?:boolean;bundleEligible?:boolean};
+export type NFCProductType="card"|"premium-card"|"bracelet"|"couple"|"keychain"|"tag"|"pet"|"stand";
+export type NFCSetup="self"|"kada";
+export type NFCCustomization={productType:NFCProductType;productName:string;unitPrice:number;color:string;style:string;name:string;title:string;company:string;text:string;initials:string;symbol:string;background:string;alignment:"left"|"center";font:"Modern"|"Classic"|"Bold";qrCode:boolean;side:"front"|"back";imageName?:string;imageDataUrl?:string;imageScale:number;imageX:number;imageY:number;setup:NFCSetup;destinationType:string;destinationUrl:string;programmingFields:Record<string,string>};
+export type CartLine={id:string;qty:number;customization?:NFCCustomization};

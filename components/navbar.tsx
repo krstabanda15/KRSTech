@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useStore } from "./store";
 
-const links = [["Home", "/"], ["Shop", "/shop"], ["Categories", "/#categories"], ["New Arrivals", "/#new"], ["Deals", "/#deals"], ["Support", "/contact"]];
+const links = [["Home", "/"], ["Shop", "/shop"], ["Custom NFC", "/nfc-studio"], ["Categories", "/#categories"], ["New Arrivals", "/#new"], ["Deals", "/#deals"], ["Support", "/contact"]];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

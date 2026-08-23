@@ -6,7 +6,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { CheckCircle2, ShoppingBag, X } from "lucide-react";
 import { products } from "@/data/products";
 import { peso } from "@/lib/helpers";
-import { CartLine } from "@/types";
+import { CartLine, NFCCustomization } from "@/types";
 
 type Store = {
   cart: CartLine[];
@@ -17,6 +17,7 @@ type Store = {
   cartOpen: boolean;
   setCartOpen: (open: boolean) => void;
   addCart: (id: string, qty?: number) => void;
+  addCustomNfc: (customization: NFCCustomization) => void;
   changeQty: (id: string, qty: number) => void;
   removeCart: (id: string) => void;
   toggleWish: (id: string) => void;
@@ -69,6 +70,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     say("Added to your cart");
     setCartOpen(true);
   };
+  const addCustomNfc = (customization: NFCCustomization) => {
+    const id = "custom-nfc-" + (globalThis.crypto?.randomUUID?.() || Date.now());
+    setCart(current => [...current, { id, qty: 1, customization }]);
+    say("Your custom NFC is in the cart");
+    setCartOpen(true);
+  };
 
   const value: Store = {
     cart,
@@ -79,6 +86,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     cartOpen,
     setCartOpen,
     addCart,
+    addCustomNfc,
     changeQty: (id, qty) => setCart(current => current.map(item => item.id === id ? { ...item, qty: Math.max(1, qty) } : item)),
     removeCart: id => { setCart(current => current.filter(item => item.id !== id)); say("Removed from cart"); },
     toggleWish: id => { const saved = wishlist.includes(id); setWishlist(current => saved ? current.filter(item => item !== id) : [...current, id]); say(saved ? "Removed from wishlist" : "Saved to wishlist"); },
@@ -100,7 +108,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 function MiniCart() {
   const { cart, cartOpen, setCartOpen, changeQty, removeCart } = useStore();
   if (!cartOpen) return null;
-  const lines = cart.map(item => ({ ...item, product: products.find(product => product.id === item.id) })).filter(item => item.product);
+  const lines = cart.map(item => ({ ...item, product: products.find(product => product.id === item.id) || (item.customization ? {id:item.id,name:item.customization.productName,price:item.customization.unitPrice,image:"/images/krst.png"} : undefined) })).filter(item => item.product);
   const subtotal = lines.reduce((sum, item) => sum + (item.product?.price || 0) * item.qty, 0);
   return <div className="fixed inset-0 z-[60]">
     <button aria-label="Close cart" onClick={() => setCartOpen(false)} className="absolute inset-0 h-full w-full cursor-default bg-black/60" />
