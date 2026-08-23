@@ -5,16 +5,16 @@ Keyboards:["photo-1587829741301-dc798b83add3","photo-1595225476474-87563907a212"
 Headsets:["photo-1618366712010-f4ae9c647dcb","photo-1599669454699-248893623440","photo-1546435770-a3e426bf472b"],
 Controllers:["photo-1592840496694-26d035b52b48","photo-1600080972464-8e5f35f63d08"],
 Monitors:["photo-1527443224154-c4a3942d3acf","photo-1593640408182-31c70c8268f5","photo-1614624532983-4ce03382d63d"],
-"Gaming Chairs":["photo-1580480055273-228ff5388ef8","photo-1598300042247-d088f8ab3a91"],
-Mousepads:["photo-1625842268584-8f3296236761","photo-1527443224154-c4a3942d3acf"],
-"PC Accessories":["photo-1625842268584-8f3296236761","photo-1587829741301-dc798b83add3","photo-1527443224154-c4a3942d3acf"]
+"Gaming Chairs":["photo-1551033541-2075d8363c66","photo-1770194993269-2521ad916c23"],
+Mousepads:["photo-1625842268584-8f3296236761","photo-1603481546164-959efb269a4e"],
+"PC Accessories":["photo-1550745165-9bc0b252726f","photo-1516321318423-f06f85e504b3","photo-1590602847861-f357a9332bbc","photo-1496181133206-80ce9b88a853"]
 };
 const seed:[string,string,string,number,string,number?][]=[
 ["Apex Pro TKL","KADA Tech","Keyboards",2999,"Wireless"],["K75 Nova","Corsair","Keyboards",2499,"Wired",2799],["BlackWidow V4","Razer","Keyboards",3499,"Wired"],
 ["Viper V3 Pro","Razer","Gaming Mice",1499,"Wireless"],["G Pro X Superlight","Logitech","Gaming Mice",1399,"Wireless"],["Pulsefire Haste","HyperX","Gaming Mice",899,"Wireless",1099],
 ["Cloud III Wireless","HyperX","Headsets",2499,"Wireless"],["Arctis Nova 7","SteelSeries","Headsets",2999,"Wireless"],["BlackShark V2","Razer","Headsets",1799,"Wired",1999],
 ["DualSense Midnight","Sony","Controllers",2299,"Wireless"],["Xbox Carbon Controller","Microsoft","Controllers",1999,"Wireless"],
-["Odyssey G5 27-inch","Samsung","Monitors",9999,"DisplayPort"],["UltraGear 24GN60R","LG","Monitors",6999,"DisplayPort",7499],["TUF VG27AQ3A","ASUS","Monitors",11999,"DisplayPort"],
+["Odyssey G5 27-inch","Apple","Monitors",9999,"DisplayPort"],["UltraGear 24GN60R","LG","Monitors",6999,"DisplayPort",7499],["TUF VG27AQ3A","ASUS","Monitors",11999,"DisplayPort"],
 ["Titan Evo Stealth","Secretlab","Gaming Chairs",12999,"N/A"],["Drift Core Chair","KADA Tech","Gaming Chairs",6499,"N/A"],
 ["QcK Heavy XL","SteelSeries","Mousepads",499,"N/A"],["Strider Hybrid XL","Razer","Mousepads",699,"N/A"],
 ["Stream Deck MK.2","Elgato","PC Accessories",4999,"USB"],["C920 HD Pro","Logitech","PC Accessories",1499,"USB",1699],["QuadCast S","HyperX","PC Accessories",2499,"USB"],["Laptop Stand Pro","KADA Tech","PC Accessories",699,"N/A"]];

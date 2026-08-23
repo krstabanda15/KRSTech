@@ -27,6 +27,12 @@ const businessTeam = [
     icon: PenTool,
     detail: "Develops the brand voice and customer-facing content, plans the shopping journey, and reviews the storefront for usability.",
   },
+  {
+    name: "Cherry Lou Reyes",
+    role: "Digital Marketing & Campaign Coordinator",
+    icon: Sparkles,
+    detail: "Plans digital campaigns, coordinates promotional content, and strengthens KADA Tech's social presence through audience-focused messaging and consistent brand communication.",
+  },
 ];
 
 export default function AboutPage() {
@@ -66,7 +72,7 @@ export default function AboutPage() {
         <h2 className="mt-2 text-3xl font-black">Shaping the E-Commerce experience</h2>
         <p className="muted mt-3 leading-7">Our marketing members contribute the strategy, merchandising, content, and customer-experience decisions behind the storefront.</p>
       </div>
-      <div className="mt-7 grid gap-4 md:grid-cols-3">
+      <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {businessTeam.map(({ name, role, icon: Icon, detail }) => <article className="panel p-6 text-center" key={name}>
           <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-[#77e5ad]/10 text-[#77e5ad]"><Icon size={22} /></span>
           <h3 className="mt-4 text-xl font-bold">{name}</h3>
