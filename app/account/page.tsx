@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { MobileNumberField } from "@/components/mobile-number-field";
+import { RecentlyViewed } from "@/components/recently-viewed";
 import { useEffect, useState } from "react";
 import { Check, ChevronRight, Clock, Heart, MapPin, Package, Pencil, Settings, User, X } from "lucide-react";
 
@@ -8,7 +10,7 @@ const nav = [["Profile", User], ["Orders", Package], ["Wishlist", Heart], ["Addr
 type Address = { label: string; street: string; city: string; province: string; postal: string; country: string };
 type Profile = { firstName: string; lastName: string; email: string; phone: string };
 const defaultAddress: Address = { label: "Home", street: "123 Sample Street", city: "Bacolod City", province: "Negros Occidental", postal: "6100", country: "Philippines" };
-const defaultProfile: Profile = { firstName: "Kim Reuben", lastName: "Tabanda", email: "kim@example.com", phone: "+63 917 123 4567" };
+const defaultProfile: Profile = { firstName: "Kim Reuben", lastName: "Tabanda", email: "kim@example.com", phone: "09171234567" };
 
 export default function Account() {
   const [tab, setTab] = useState("Profile");
@@ -22,7 +24,7 @@ export default function Account() {
         {tab === "Orders" && <Orders/>}
         {tab === "Wishlist" && <Link href="/wishlist" className="btn primary mt-6">Open wishlist</Link>}
         {tab === "Addresses" && <AddressCard/>}
-        {tab === "Recently Viewed" && <p className="muted mt-6">Your recently viewed gear will appear here.</p>}
+        {tab === "Recently Viewed" && <RecentlyViewed account/>}
         {tab === "Settings" && <div className="mt-6 space-y-4"><Toggle label="Order updates"/><Toggle label="Product drops and deals"/><Toggle label="Dark appearance"/></div>}
       </section>
     </div>
@@ -66,7 +68,7 @@ function ProfileForm() {
     <ProfileField label="First name" value={draft.firstName} onChange={value => update("firstName", value)} disabled={!editing} required/>
     <ProfileField label="Last name" value={draft.lastName} onChange={value => update("lastName", value)} disabled={!editing} required/>
     <ProfileField label="Email" value={draft.email} onChange={value => update("email", value)} disabled={!editing} required type="email"/>
-    <ProfileField label="Phone" value={draft.phone} onChange={value => update("phone", value)} disabled={!editing} required type="tel"/>
+    <MobileNumberField label="Mobile number" value={draft.phone} onChange={value => update("phone", value)} disabled={!editing} required/>
     <div className="flex flex-wrap items-center gap-3 sm:col-span-2">
       {editing && <><button type="submit" className="btn primary sm:w-fit"><Check size={17}/>Save changes</button><button type="button" onClick={() => { setDraft(profile); setEditing(false); setSaved(false); }} className="btn secondary"><X size={17}/>Cancel</button></>}
       {saved && <span role="status" className="flex items-center gap-2 text-sm font-bold text-[#77e5ad]"><Check size={16}/>Profile saved</span>}

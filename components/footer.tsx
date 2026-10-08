@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Gamepad2, Globe, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Gamepad2, Globe, MessageCircle, Users } from "lucide-react";
 import { ShareSite } from "./share-site";
 
 const groups = [
@@ -23,16 +22,17 @@ export function Footer() {
         {group.slice(1).map(item => { const [label, href] = item as string[]; return <Link key={label} href={href} className="muted mb-3 block text-sm hover:text-white">{label}</Link>})}
       </div>)}
     </div>
-    <div className="border-t border-[#202633] py-6">
-      <div className="container flex flex-col items-start justify-between gap-6 min-[520px]:flex-row min-[520px]:items-center min-[520px]:gap-4">
+    <div className="border-t border-[#202633] bg-[#0c1017] py-6 sm:py-7">
+      <div className="container flex flex-col items-start justify-between gap-5 md:flex-row md:items-center md:gap-8">
         <span className="text-xs text-gray-500">© 2026 KADA Tech. All rights reserved.</span>
-        <Link href="https://kimreubentabanda.vercel.app" target="_blank" rel="noreferrer" aria-label="Visit Kim Reuben S. Tabanda's portfolio" className="group flex max-w-full items-center gap-3 rounded-xl p-2 -m-2 hover:bg-white/5">
-          <div className="relative h-11 w-11 overflow-hidden rounded-full border-2 border-[#77e5ad]/60 bg-white">
-            <Image src="/images/krst.png" alt="Kim Reuben S. Tabanda" fill sizes="44px" className="object-cover object-top transition-transform group-hover:scale-105" />
+        <Link href="/about" aria-label="Meet the KADA Tech team: Kim, Angelou, Domee, Alvin, and Cherry" className="group flex max-w-full items-center gap-3 rounded-xl px-3 py-2 transition duration-200 hover:bg-[#77e5ad]/[.05] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#77e5ad] md:shrink-0">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#77e5ad]/20 bg-[#77e5ad]/10 text-[#77e5ad]">
+            <Users size={21} aria-hidden="true" />
           </div>
           <div className="min-w-0">
-            <span className="block text-[10px] uppercase tracking-[.14em] text-gray-500">Designed and developed by</span>
-            <b className="text-sm text-gray-200 group-hover:text-[#77e5ad]">Kim Reuben S. Tabanda ↗</b>
+            <span className="block text-[9px] font-medium uppercase leading-4 tracking-[.16em] text-gray-400 sm:text-[10px]">Designed and developed by</span>
+            <div className="mt-1 flex items-center justify-between gap-4"><b className="text-sm font-bold text-gray-100 transition-colors group-hover:text-[#77e5ad]">KADA Tech Team</b><ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-[#77e5ad]/70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div>
+            <ul aria-label="Team members" className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 text-xs leading-5 text-gray-400">{["Kim", "Angelou", "Domee", "Alvin", "Cherry"].map((name,index)=><li key={name} className="flex items-center gap-2">{index>0&&<span aria-hidden="true" className="h-0.5 w-0.5 rounded-full bg-[#77e5ad]/60" />}{name}</li>)}</ul>
           </div>
         </Link>
       </div>

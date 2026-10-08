@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
+import { MobileNumberField, validMobile, mobileError } from "@/components/mobile-number-field";
 import { Check, ChevronRight, CreditCard, LoaderCircle, Lock, PackageCheck, MapPin, Plus, QrCode, RotateCcw, ShieldCheck, ShoppingBag, Smartphone } from "lucide-react";
 import { useStore } from "@/components/store";
 import { products } from "@/data/products";
@@ -53,7 +54,7 @@ export default function Checkout() {
     if (!contact.email.trim()) next.email = "Email address is required.";
     else if (!/^\S+@\S+\.\S+$/.test(contact.email)) next.email = "Enter a valid email address.";
     if (!contact.phone.trim()) next.phone = "Mobile number is required.";
-    else if (!/^(\+63|0)\d{10}$/.test(contact.phone.replace(/[\s-]/g, ""))) next.phone = "Enter a valid Philippine mobile number.";
+    else if (!validMobile(contact.phone)) next.phone = mobileError;
     setErrors(next); return !Object.keys(next).length;
   };
 
@@ -82,8 +83,8 @@ export default function Checkout() {
       }
       if (!/^[0-9]{3,4}$/.test(card.cvv)) next.cardCvv = "Enter the 3 or 4-digit security code.";
     } else {
-      const phone = walletPhone.replace(/[^0-9+]/g, "");
-      if (!/^([+]63|0)[0-9]{10}$/.test(phone)) next.walletPhone = "Enter the mobile number linked to your wallet.";
+      const phone = walletPhone;
+      if (!validMobile(phone)) next.walletPhone = mobileError;
       if (!walletPaid) next.walletPaid = `Confirm the payment in ${wallet} before continuing.`;
     }
     setErrors(next); return !Object.keys(next).length;
@@ -124,7 +125,7 @@ export default function Checkout() {
       <section className="panel p-6 sm:p-8">
         <h1 className="text-2xl font-black">{steps[step]}</h1><p className="muted mt-1 text-sm">Contact and saved-address details stay in this browser for faster demo checkout next time.</p>
         <div className="mt-7">
-          {step === 0 && <div className="grid gap-4"><Field label="Email address" required value={contact.email} onChange={value => setContact({ ...contact, email: value })} placeholder="kim@example.com" error={errors.email} type="email" /><Field label="Mobile number" required value={contact.phone} onChange={value => setContact({ ...contact, phone: value })} placeholder="+63 917 123 4567" error={errors.phone} /></div>}
+          {step === 0 && <div className="grid gap-4"><Field label="Email address" required value={contact.email} onChange={value => setContact({ ...contact, email: value })} placeholder="kim@example.com" error={errors.email} type="email" /><MobileNumberField label="Mobile number" required value={contact.phone} onChange={value => setContact({ ...contact, phone: value })} error={errors.phone} /></div>}
           {step === 1 && <Shipping addresses={addresses} address={address} selectedId={selectedAddressId} adding={addingAddress} errors={errors} onChoose={chooseAddress} onAdd={() => { setAddingAddress(true); setAddress(blankAddress); setSelectedAddressId(""); }} onAddress={setAddress} onDefault={setDefault} />}
           {step === 2 && <ChoiceGroup value={delivery} onChange={setDelivery} options={[{ value: "Standard", title: "Standard delivery", detail: `Arrives by ${estimatedDate(5)} · Free` }, { value: "Express", title: "Express delivery", detail: `Arrives by ${estimatedDate(2)} · ₱299` }]} />}
           {step === 3 && <div className="space-y-6">
@@ -168,11 +169,11 @@ function CardPayment({ card, errors, onChange }: { card: CardDetails; errors: Re
 }
 
 function WalletPayment({ wallet, phone, paid, errors, onWallet, onPhone, onPaid }: { wallet: string; phone: string; paid: boolean; errors: Record<string, string>; onWallet: (wallet: string) => void; onPhone: (phone: string) => void; onPaid: () => void }) {
-  const phoneIsValid = /^([+]63|0)[0-9]{10}$/.test(phone.replace(/[^0-9+]/g, ""));
+  const phoneIsValid = validMobile(phone);
   return <div className="rounded-2xl border border-[#303745] bg-[#0c1016] p-5 sm:p-6">
     <div className="mb-5 flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#77e5ad]/10 text-[#77e5ad]"><Smartphone size={21} /></span><div><b>Pay with your mobile wallet</b><p className="muted text-xs">Choose your wallet, then scan or confirm on your phone.</p></div></div>
     <div className="mb-5 grid grid-cols-2 gap-3">{["GCash", "Maya"].map(item => <button key={item} onClick={() => onWallet(item)} className={`rounded-xl border px-4 py-3 font-bold ${wallet === item ? "border-[#77e5ad] bg-[#77e5ad]/10 text-[#77e5ad]" : "border-[#303745]"}`}>{item}</button>)}</div>
-    <Field label={`${wallet} mobile number`} required value={phone} onChange={onPhone} placeholder="+63 917 123 4567" error={errors.walletPhone} />
+    <MobileNumberField label={`${wallet} mobile number`} required value={phone} onChange={onPhone} error={errors.walletPhone} />
     <div className="mt-5 grid items-center gap-5 rounded-xl border border-[#303745] p-4 sm:grid-cols-[132px_1fr]">
       <div className="relative mx-auto grid h-32 w-32 place-items-center rounded-xl bg-white text-black"><QrCode size={92} strokeWidth={1.8} /><span className="absolute rounded bg-white px-1 text-[9px] font-black">{wallet}</span></div>
       <div><b>Scan to authorize</b><p className="muted mt-1 text-sm">Open {wallet}, scan the code, and approve the payment. For this demo, use the confirmation button after entering your number.</p><button disabled={!phoneIsValid || paid} onClick={onPaid} className="btn primary mt-4 w-full disabled:cursor-not-allowed disabled:opacity-50">{paid ? <><Check size={17} />Payment authorized</> : "I’ve approved the payment"}</button></div>
